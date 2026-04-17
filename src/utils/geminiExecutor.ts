@@ -87,7 +87,7 @@ ${prompt_processed}
     prompt_processed = changeModeInstructions;
   }
   
-  const args = [];
+  const args: string[] = [CLI.FLAGS.YES];
   if (model) { args.push(CLI.FLAGS.MODEL, model); }
   if (sandbox) { args.push(CLI.FLAGS.SANDBOX); }
   
@@ -105,7 +105,7 @@ ${prompt_processed}
     if (errorMessage.includes(ERROR_MESSAGES.QUOTA_EXCEEDED) && model !== MODELS.FLASH) {
       Logger.warn(`${ERROR_MESSAGES.QUOTA_EXCEEDED}. Falling back to ${MODELS.FLASH}.`);
       await sendStatusMessage(STATUS_MESSAGES.FLASH_RETRY);
-      const fallbackArgs = [];
+      const fallbackArgs: string[] = [CLI.FLAGS.YES];
       fallbackArgs.push(CLI.FLAGS.MODEL, MODELS.FLASH);
       if (sandbox) {
         fallbackArgs.push(CLI.FLAGS.SANDBOX);

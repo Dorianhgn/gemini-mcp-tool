@@ -40,6 +40,19 @@ Before using this tool, ensure you have:
 claude mcp add gemini-cli -- npx -y gemini-mcp-tool
 ```
 
+### Local Build Setup (for latest fixes)
+
+If you need features not yet published to npm (e.g. `-y` yolo mode for MCP tool calls):
+
+```bash
+cd ~/gemini-mcp-tool
+npm install
+npm run build
+claude mcp add gemini-mcp-tool -- node $(pwd)/dist/index.js
+```
+
+This overwrites the existing `gemini-mcp-tool` entry if one is already configured.
+
 ### Verify Installation
 
 Type `/mcp` inside Claude Code to verify the gemini-cli MCP is active.
