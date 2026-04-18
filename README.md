@@ -45,13 +45,20 @@ claude mcp add gemini-cli -- npx -y gemini-mcp-tool
 If you need features not yet published to npm (e.g. `-y` yolo mode for MCP tool calls):
 
 ```bash
+# 1. Remove the published package entry (if installed)
+claude mcp remove gemini-mcp-tool
+
+# 2. Clone and build locally
+git clone https://github.com/jamubc/gemini-mcp-tool ~/gemini-mcp-tool
 cd ~/gemini-mcp-tool
 npm install
 npm run build
-claude mcp add gemini-mcp-tool -- node $(pwd)/dist/index.js
+
+# 3. Register the local build globally (works from any directory)
+claude mcp add -s user gemini-mcp-tool -- node ~/gemini-mcp-tool/dist/index.js
 ```
 
-This overwrites the existing `gemini-mcp-tool` entry if one is already configured.
+The `-s user` flag makes the entry global (user-scoped), so it is active in every project — not just the repo directory.
 
 ### Verify Installation
 
